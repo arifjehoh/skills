@@ -43,4 +43,5 @@ Old route returns 410 after that date.
 ## See also
 
 - [`SKILL.md`](./SKILL.md) — full workflow
+- Original: https://www.skills.sh/juliusbrussee/caveman/caveman-commit
 

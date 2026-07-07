@@ -7,6 +7,8 @@ skills:
     source: https://github.com/mattpocock/skills
   - name: grilling
     source: https://github.com/mattpocock/skills
+  - name: writing-great-skills
+    source: https://github.com/mattpocock/skills
   - name: caveman-commit
     source: ./skills/caveman-commit
   

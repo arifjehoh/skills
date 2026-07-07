@@ -1,0 +1,10 @@
+skills:
+  - name: find-skills
+    source: https://github.com/vercel-labs/skills
+  - name: domain-modeling
+    source: https://github.com/mattpocock/skills
+  - name: grill-with-docs
+    source: https://github.com/mattpocock/skills
+  - name: grilling
+    source: https://github.com/mattpocock/skills
+  

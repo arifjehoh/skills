@@ -6,11 +6,11 @@ while IFS= read -r json; do
   name=$(echo "$json" | jq -r '.name')
 
   echo "Installing skill: $name"
-  
+
   if [[ "$source" == http* ]]; then
-    npx skills add "$source" --skill "$name" -g </dev/tty
+    npx skills add "$source" --skill "$name" -g -a github-copilot -y </dev/tty
   else
-    npx skills add "$source" -g </dev/tty
+    npx skills add "$source" -g -a github-copilot -y </dev/tty
   fi
 done < <(yq -r '.skills[] | @json' skills.yaml)
 

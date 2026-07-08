@@ -11,6 +11,8 @@ skills:
     source: https://github.com/mattpocock/skills
   - name: caveman-commit
     source: https://github.com/juliusbrussee/caveman
+  - name: create-skill
+    source: ./skills/create-skill
   - name: commit
     source: ./skills/commit
   - name: caveman-pr

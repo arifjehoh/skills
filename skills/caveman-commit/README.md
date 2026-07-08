@@ -1,16 +1,12 @@
 # caveman-commit
 
-Terse commit workflow. Analyzes diff, asks before staging, commits with compressed message.
+Terse Conventional Commits. Why over what.
 
 ## What it does
 
-Full git commit workflow in Conventional Commits format:
-1. Analyzes staged/unstaged changes
-2. If nothing staged, asks which files to stage
-3. Generates terse message (subject ≤50 chars, body only when *why* isn't obvious)
-4. Executes `git commit`
+Generates commit messages in Conventional Commits format. Subject ≤50 chars, hard cap 72. Imperative mood. Body only when the *why* is non-obvious or there are breaking changes. No AI attribution, no "this commit does X", no emoji unless the project uses them. Body always required for breaking changes, security fixes, data migrations, and reverts — future debuggers need the context.
 
-Imperative mood. Body required for breaking changes, security fixes, migrations, reverts.
+Commits the currently staged changes with the generated message. Does not stage files (`git add`) or amend — it only commits what you've already staged. Aborts if nothing is staged.
 
 ## How to invoke
 
@@ -18,30 +14,32 @@ Imperative mood. Body required for breaking changes, security fixes, migrations,
 /caveman-commit
 ```
 
-Also triggers on "commit", "write commit", or when you stage changes.
+Also triggers on phrases like "write a commit", "commit message", "generate commit".
 
-## Example commits
+## Example output
 
-New endpoint:
+Diff: new endpoint for user profile.
+
 ```
 feat(api): add GET /users/:id/profile
 
-Mobile client needs profile data without full user payload
+Mobile client needs profile data without the full user payload
 to reduce LTE bandwidth on cold-launch screens.
 
 Closes #128
 ```
 
-Breaking change:
+Diff: breaking API rename.
+
 ```
 feat(api)!: rename /v1/orders to /v1/checkout
 
-BREAKING CHANGE: clients must migrate before 2026-06-01.
-Old route returns 410 after that date.
+BREAKING CHANGE: clients on /v1/orders must migrate to /v1/checkout
+before 2026-06-01. Old route returns 410 after that date.
 ```
 
 ## See also
 
-- [`SKILL.md`](./SKILL.md) — full workflow
+- [`SKILL.md`](./SKILL.md) — full LLM-facing instructions
+- [Caveman README](../../README.md) — repo overview
 - Original: https://www.skills.sh/juliusbrussee/caveman/caveman-commit
-

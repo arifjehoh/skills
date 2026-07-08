@@ -11,4 +11,6 @@ skills:
     source: https://github.com/mattpocock/skills
   - name: caveman-commit
     source: ./skills/caveman-commit
+  - name: caveman-pr
+    source: ./skills/caveman-pr
   

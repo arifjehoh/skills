@@ -10,7 +10,9 @@ skills:
   - name: writing-great-skills
     source: https://github.com/mattpocock/skills
   - name: caveman-commit
-    source: ./skills/caveman-commit
+    source: https://github.com/juliusbrussee/caveman
+  - name: commit
+    source: ./skills/commit
   - name: caveman-pr
     source: ./skills/caveman-pr
   

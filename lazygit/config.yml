@@ -1,0 +1,10 @@
+# To access -> go to lazygit app, Press [1] and Press [e] and paste in the custom command
+customCommands:
+  - key: 'N'
+    context: 'files'
+    command: "copilot --model claude-haiku-4.5 --yolo -s -p '/commit {{ .Form.Text }}' " 
+    prompts:
+      - type: 'input'
+        title: 'Commit message'
+        key: 'Text'
+        initialValue: ''

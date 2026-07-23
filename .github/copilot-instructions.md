@@ -1,88 +1,80 @@
 # Copilot Instructions
 
-Personal collection of Copilot skills for software engineering workflows.
+Personal collection of Copilot agent skills. This repo is both a **skills registry**
+(`skills.yaml` + `install-skills.sh`) and a home for **locally-authored skills**
+(`skills/*`). There is no application code, build, or test suite — the "product" is the
+skills and the installer that publishes them globally.
 
-**Canonical location:** `$HOME/skills`
+## Canonical location
 
-## Setup
+The repo **must** live at `$HOME/skills`. Local skills, `create-skill`, and the
+installer all hard-code this path — cloning elsewhere breaks skill creation and the
+global instructions symlink.
 
-This repository must be cloned to `$HOME/skills`:
+## Install / validate changes
 
-```bash
-git clone <repository-url> $HOME/skills
-cd $HOME/skills
-./install-skills.sh
-```
-
-All local skills reference this location. Moving the repository will break skill creation and installation.
-
-## Repository Structure
-
-```
-skills/
-├── skills.yaml              # Central registry of all skills (local & remote)
-├── install-skills.sh        # Installer that reads skills.yaml
-└── skills/                  # Local skill implementations (SKILL.md + README.md)
-```
-
-### Skill Format
-
-Each skill in `skills/` follows the standard structure:
-- `SKILL.md` — LLM-facing instructions (frontmatter + rules)
-- `README.md` — Human-facing documentation
-
-## Installation
+There is no test or lint command. To apply and verify changes, run the installer:
 
 ```bash
-# Install all skills from skills.yaml globally
-./install-skills.sh
+cd $HOME/skills && ./install-skills.sh
 ```
 
-**Dependencies:** `yq` (YAML processor), `jq` (JSON processor), `npx` (npm package runner)
+It reads `skills.yaml`, installs every skill globally for the Copilot agent, then
+symlinks `instructions/copilot-instructions.md` → `~/.copilot/copilot-instructions.md`.
+Requires `yq`, `jq`, and `npx`. After changing a skill, reload skills or start a new
+session before the change takes effect.
 
-The installer:
-1. Parses `skills.yaml` with `yq`
-2. For remote skills (URLs): `npx skills add <url> --skill <name> -g -a github-copilot -y`
-3. For local skills (paths): `npx skills add <path> -g -a github-copilot -y`
-4. All installs target global scope (`-g`) for GitHub Copilot agent (`-a github-copilot`)
+Install or reinstall a single skill without running the whole batch:
 
-## Architecture
-
-### Skills Registry (`skills.yaml`)
-
-Centralized manifest for both:
-- **Remote skills** — fetched from GitHub repos (e.g., vercel-labs/skills, mattpocock/skills)
-- **Local skills** — implemented in `./skills/` subdirectories
-
-Format:
-```yaml
-skills:
-  - name: skill-name
-    source: https://github.com/org/repo  # remote
-  - name: local-skill
-    source: ./skills/local-skill         # local path
+```bash
+cd $HOME/skills && npx skills add ./skills/<skill-name> -g -a github-copilot -y   # local
+npx skills add <repo-url> --skill <name> -g -a github-copilot -y                  # remote
+npx skills remove <name> -g -a github-copilot                                     # uninstall
 ```
 
-### Working with Skills
+## Two instruction files — don't confuse them
 
-**Adding a new local skill:**
-1. Use `/create-skill` — wraps `writing-great-skills` to guide creation, then automatically creates files in `$HOME/skills/skills/`, registers in `skills.yaml`, and installs. Works from anywhere.
-2. Manual alternative:
-   - Create directory: `$HOME/skills/skills/skill-name/`
-   - Add `SKILL.md` with frontmatter (name + description)
-   - Add `README.md` for human documentation
-   - Register in `$HOME/skills/skills.yaml` with `source: ./skills/skill-name`
-   - Run `cd $HOME/skills && ./install-skills.sh` to install globally
+- **`.github/copilot-instructions.md`** (this file) — repo-specific guidance for working
+  *in* this repository.
+- **`instructions/copilot-instructions.md`** — the author's **global** working agreement
+  (mindset, JIRA-to-PR workflow, branching, commit rules). `install-skills.sh` symlinks
+  it into `~/.copilot/`, so it applies to *every* repo/session. Edit the file in this
+  repo — never edit the symlink target.
 
-**Adding a remote skill:**
-1. Add to `skills.yaml` with `source: https://github.com/org/repo`
-2. Run `./install-skills.sh`
+## Authoring a skill
 
-**Removing a skill:**
-- Use `npx skills remove <name> -g -a github-copilot`
+Prefer `/create-skill` (wraps the community `writing-great-skills` skill, then creates
+files, registers in `skills.yaml`, and installs). To add one manually:
 
-**Composability:**
-Local skills can invoke other skills via the `skill` tool — e.g., `commit` delegates message generation to community `caveman-commit`, then adds execution logic.
+1. Create `skills/<name>/` with `SKILL.md` and `README.md`.
+2. Register it in `skills.yaml` with `source: ./skills/<name>`.
+3. Run `./install-skills.sh`.
 
-**Shell script notes:**
-`install-skills.sh` uses `< <(...)` process substitution and `</dev/tty` redirects to handle YAML → JSON streaming and interactive prompts from `npx skills` during batch installs.
+### SKILL.md conventions (follow the existing skills exactly)
+
+- **Frontmatter**: `name` + a `description` that ends with explicit trigger phrases and
+  the slash-command form (e.g. `Use when the user says "commit this"... or invokes
+  /commit.`). The description is how the agent decides to fire the skill — be specific.
+- **Body** is imperative instructions to the agent, not prose docs.
+- **`## Steps`** are numbered, each ending with a `_Completion:_` / `*Completion
+  criterion:*` marker stating how you know the step is done.
+- **`## Boundaries`** at the end states what the skill does and explicitly does *not* do.
+
+### Composability
+
+Local skills orchestrate community skills via the `skill` tool rather than duplicating
+their logic. `commit` delegates message generation to `caveman-commit` and only owns the
+commit step; `create-skill` delegates authoring to `writing-great-skills`. When wrapping
+a skill, own one concern and defer the rest — say so in `## Boundaries`.
+
+## skills.yaml
+
+Central manifest for both remote skills (`source:` is a GitHub URL) and local skills
+(`source:` is `./skills/<name>`). The installer branches on whether `source` starts with
+`http`. Keep new local skills registered here or they won't be installed.
+
+## install-skills.sh gotchas
+
+Uses `< <(yq ... | @json)` process substitution to stream YAML→JSON, and `</dev/tty` on
+each `npx skills add` so the interactive prompts still reach the terminal during the
+batch loop. Preserve both when editing the loop.

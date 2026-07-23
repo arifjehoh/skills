@@ -82,3 +82,5 @@ I keep the `commit` and `caveman-pr` skills installed, so use them:
   change.
 - The change is independently testable on its own branch before opening the PR.
 - No unrelated files touched; no leftover debug code, comments, or temp files.
+- After finishing a task, commit only that task's relevant changes using the `commit`
+  skill — stage just the files that belong to the task, never a blanket `git add .`.

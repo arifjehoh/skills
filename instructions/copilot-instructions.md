@@ -72,6 +72,8 @@ I keep the `commit` and `caveman-pr` skills installed, so use them:
 - For commit messages on task-branches, use the `commit` skill (delegates to
   `caveman-commit`): terse, Conventional Commits style, ≤50 char subject, body only
   when the "why" isn't obvious.
+- Commit once per task, only after it's verified. Stage just the files that belong to
+  that task — never a blanket `git add .` — so each commit maps to one task.
 - For PR descriptions (task → feature-branch and feature-branch → main), use the
   `caveman-pr` skill: Background, Changes, Testing, Example of testing — terse,
   exact, no fluff, why over what.
@@ -82,5 +84,5 @@ I keep the `commit` and `caveman-pr` skills installed, so use them:
   change.
 - The change is independently testable on its own branch before opening the PR.
 - No unrelated files touched; no leftover debug code, comments, or temp files.
-- After finishing a task, commit only that task's relevant changes using the `commit`
-  skill — stage just the files that belong to the task, never a blanket `git add .`.
+- The task's changes are committed with the `commit` skill (see Commits and PR
+  descriptions).

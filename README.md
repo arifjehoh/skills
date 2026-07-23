@@ -41,6 +41,14 @@ Then use them:
 /caveman-pr main     # generate PR description vs main branch
 ```
 
+## global instructions
+
+[`instructions/copilot-instructions.md`](instructions/copilot-instructions.md) is my
+personal working agreement with Copilot (mindset, JIRA-ticket-to-PR workflow,
+branching strategy, sub-task sizing). `install-skills.sh` symlinks it to
+`~/.copilot/copilot-instructions.md` so it applies globally across all repos/sessions.
+Edit the file in this repo — never edit the symlink target directly.
+
 ## architecture
 
 **Composable skills** — local skills can invoke remote skills via the `skill` tool. Example: `commit` delegates message generation to community `caveman-commit`, then adds the commit execution step.

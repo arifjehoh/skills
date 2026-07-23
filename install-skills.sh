@@ -15,3 +15,8 @@ while IFS= read -r json; do
 done < <(yq -r '.skills[] | @json' skills.yaml)
 
 echo "Done installing skills!"
+
+# Symlink global instructions so they apply across all repos/sessions
+mkdir -p "$HOME/.copilot"
+ln -sf "$HOME/skills/instructions/copilot-instructions.md" "$HOME/.copilot/copilot-instructions.md"
+echo "Linked global instructions: ~/.copilot/copilot-instructions.md -> ~/skills/instructions/copilot-instructions.md"

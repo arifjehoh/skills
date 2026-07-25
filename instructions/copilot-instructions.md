@@ -16,40 +16,13 @@ repositories. See `instructions/README.md` for how this file is stored and insta
 - When these instructions conflict with a repo's own conventions or its
   `.github/copilot-instructions.md`, the repo wins.
 
-## Workflow: turning a JIRA ticket into shippable, reviewable work
+## Workflow: JIRA ticket to implementation
 
-**Hard rule: no code before an approved PLAN and TASKS.** Never edit, create, or
-refactor code — not even a "quick" change — until I have explicitly approved a plan.
-If I ask you to jump straight to code, stop and produce the plan first. The only work
-allowed before approval is read-only investigation (reading files, searching, running
-non-mutating commands to understand the codebase).
+Use the `jira-workflow` skill whenever I paste a ticket (text or link), or say
+"jira workflow", "plan this ticket", or "/jira-workflow".
 
-JIRA tickets are often thin on context. When I paste a ticket (text or link), follow
-this sequence:
-
-1. **Clarify context first.** Read the ticket, infer the likely goal, and ask
-   targeted questions about anything ambiguous (scope, acceptance criteria, edge
-   cases) before proposing a plan. Don't ask about things you can verify yourself
-   by reading the codebase.
-2. **Produce a PLAN and wait for approval.** Before writing any code, output a
-   concise plan with exactly these sections:
-   - **Goal** — what "done" looks like in one or two sentences.
-   - **Scope** — what's explicitly in and out.
-   - **Tasks** — an ordered, numbered breakdown into small, independent units of
-     work, each phrased as a concrete deliverable.
-   Then stop and wait. Do not begin implementation until I reply with approval or
-   corrections. If I request changes, revise the PLAN and wait again.
-3. **Record the approved TASKS as todos.** Once approved, write each task into the
-   todos table (with dependencies in todo_deps) before touching code, and keep their
-   status current (`in_progress` before starting, `done` when finished) so progress
-   and blockers stay visible.
-4. **Size tasks by judgment, not a fixed metric.** Each task should be:
-   - One cohesive concern (no bundling unrelated changes).
-   - Isolated and functional enough to be tested by itself.
-   - Small enough that a reviewer can review it in one sitting.
-   There's no fixed file/line cap — use engineering judgment, favor smaller.
-5. **Work one task at a time.** Implement the current task fully, verify it, then move
-   to the next. Don't start a new task while another is unfinished unless I say so.
+That skill owns the execution details for clarification, PLAN/TASKS approval, todo
+tracking, and one-task-at-a-time implementation.
 
 ## Branching strategy
 

@@ -16,7 +16,12 @@ Turn a JIRA ticket into shippable work with strict plan approval gates.
    - **Goal** (1–2 sentences)
    - **Scope** (in/out)
    - **Tasks** (ordered, concrete deliverables)
-   Then stop and wait for explicit approval or corrections. If corrected, revise and wait again. _Completion: approved PLAN and TASKS._
+   - **Definition of Done** (concrete, measurable checks), including:
+     - exact files/areas expected to change
+     - exact verification commands to run
+     - explicit acceptance outcomes (what must be true when done)
+     - explicit out-of-scope guardrails
+   Then stop and wait for explicit approval or corrections. If corrected, revise and wait again. _Completion: approved PLAN, TASKS, and Definition of Done._
 
 3. **Record approved TASKS as todos.** Insert each task into `todos`, set dependencies in `todo_deps`, and maintain status (`in_progress` before work, `done` when complete). _Completion: todo state matches real progress._
 

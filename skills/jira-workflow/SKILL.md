@@ -22,6 +22,13 @@ Turn a JIRA ticket into shippable work with strict plan approval gates.
 
 4. **Implement one task at a time.** Fully implement and verify the current task before starting the next one unless the user explicitly reprioritizes. _Completion: current task is complete and verified before moving on._
 
+## Definition of Done
+
+- PLAN/TASKS were approved before any code changes.
+- Every approved task was tracked in `todos`/`todo_deps` with final status `done`.
+- The smallest targeted verification for each completed task was run and passed.
+- No unrelated files or changes were included.
+
 ## Boundaries
 
 Owns workflow orchestration (clarify → plan approval → todo tracking → execution order). Does not replace repository-specific coding, testing, or release instructions.

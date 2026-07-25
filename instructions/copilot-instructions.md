@@ -18,11 +18,12 @@ repositories. See `instructions/README.md` for how this file is stored and insta
 
 ## Workflow: JIRA ticket to implementation
 
-Use the `jira-workflow` skill whenever I paste a ticket (text or link), or say
-"jira workflow", "plan this ticket", or "/jira-workflow".
+- **Hard rule: no code before an approved PLAN and TASKS.** Never edit, create, or refactor code — not even a "quick" change — until I have explicitly approved a plan.
+- **Hard rule: If I ask you to jump straight to code, stop and produce the plan first.** The only work allowed before approval is read-only investigation (reading files, searching, running non-mutating commands to understand the codebase).
 
-That skill owns the execution details for clarification, PLAN/TASKS approval, todo
-tracking, and one-task-at-a-time implementation.
+Use the `jira-workflow` skill whenever I paste a ticket (text or link), or say "jira workflow", "plan this ticket", or "/jira-workflow".
+
+That skill owns the execution details for clarification, PLAN/TASKS approval, todo tracking, and one-task-at-a-time implementation.
 
 ## Branching strategy
 

@@ -17,4 +17,8 @@ skills:
     source: ./skills/commit
   - name: caveman-pr
     source: ./skills/caveman-pr
+  - name: jira-workflow
+    source: ./skills/jira-workflow
+  - name: openapi
+    source: ./skills/openapi
   

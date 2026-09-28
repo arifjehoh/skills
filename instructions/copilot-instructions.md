@@ -53,6 +53,19 @@ tracking, and one-task-at-a-time implementation.
 - Verify the change actually works before claiming it's done. Don't report success on
   an unverified change.
 
+## Personal Test-First Working Agreement
+
+- For new backend work, write the test cases before building the implementation.
+- Apply the same test-first approach to new frontend work.
+- Run and verify the tests before implementing the behavior they describe.
+- Build in small, independently testable increments rather than delivering an
+  untestable batch.
+- Start with synthetic, mocked, or minimal fixture data in automated tests.
+- After the test cases and implementation are in place, use cleaned real data supplied
+  by me for accurate manual validation.
+- Treat real-data manual testing as complementary evidence, not a replacement for
+  automated test coverage.
+
 ## Security
 
 - Never commit secrets, credentials, tokens, or `.env` files. If a change needs a

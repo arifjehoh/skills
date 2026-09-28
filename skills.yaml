@@ -21,4 +21,5 @@ skills:
     source: ./skills/jira-workflow
   - name: openapi
     source: ./skills/openapi
-  
+  - name: ponytail
+    source: https://github.com/dietrichgebert/ponytail

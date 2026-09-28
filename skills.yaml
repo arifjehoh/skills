@@ -1,25 +1,25 @@
 skills:
-  - name: find-skills
-    source: https://github.com/vercel-labs/skills
+  #- name: find-skills
+  #  source: https://github.com/vercel-labs/skills
   - name: domain-modeling
     source: https://github.com/mattpocock/skills
   - name: grill-with-docs
     source: https://github.com/mattpocock/skills
   - name: grilling
     source: https://github.com/mattpocock/skills
-  - name: writing-great-skills
-    source: https://github.com/mattpocock/skills
-  - name: caveman-commit
-    source: https://github.com/juliusbrussee/caveman
-  - name: create-skill
-    source: ./skills/create-skill
-  - name: commit
-    source: ./skills/commit
+  # - name: writing-great-skills
+  #   source: https://github.com/mattpocock/skills
+  # - name: caveman-commit
+  #   source: https://github.com/juliusbrussee/caveman
+  # - name: create-skill
+  #   source: ./skills/create-skill
+  # - name: commit
+  #   source: ./skills/commit
   - name: caveman-pr
     source: ./skills/caveman-pr
-  - name: jira-workflow
-    source: ./skills/jira-workflow
-  - name: openapi
-    source: ./skills/openapi
+  # - name: jira-workflow
+  #   source: ./skills/jira-workflow
+  # - name: openapi
+  #   source: ./skills/openapi
   - name: ponytail
     source: https://github.com/dietrichgebert/ponytail
